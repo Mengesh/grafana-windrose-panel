@@ -166,6 +166,12 @@ export const plugin = new PanelPlugin<WindroseOptions>(WindrosePanel).setPanelOp
       defaultValue: false,
       showIf: (config) => config.showLegend
     })
+    .addTextInput({
+	  path: 'legendTitle',
+	  name: 'Legend title',
+	  defaultValue: 'Wind speed',
+	  showIf: (config) => config.showLegend
+     })    
     .addSelect({
       path: 'legendPosition',
       name: 'Legend position',
@@ -184,7 +190,7 @@ export const plugin = new PanelPlugin<WindroseOptions>(WindrosePanel).setPanelOp
         ],
       },
       showIf: (config) => config.showLegend
-    })
+    })    
     .addSelect({
       path: 'legendAnchor',
       name: 'Legend anchor point',

@@ -62,4 +62,5 @@ A short explanation of each of the settings can be found in the settings panel. 
     - *Knots (kt)*
 
 # License
-Apache License Version 2.0, see [LICENSE](https://git.operato.eu/open-source/operato-windrose-panel/-/blob/main/LICENSE).
+Apache License Version 2.0, see [LICENSE](https://github.com/Mengesh/grafana-windrose-panel).
+

@@ -18,6 +18,7 @@ export interface WindroseOptions {
   showLegend: boolean;
   doesLegendOverlay: boolean;
   legendPosition: string;
+  legendTitle: string;
   legendAnchor: string;
   windSpeedUnit: string;
   colorPalette: string;
@@ -107,6 +108,7 @@ export type WindroseProps = {
   directionLabels: DirectionLabel[];
   windSpeedUnit: string;
   legendPosition: string;
+  legendTitle: string;
 };
 
 export type WindroseLegendProps = {
@@ -116,4 +118,5 @@ export type WindroseLegendProps = {
   windSpeedUnit: string;
   anchor: string;
   position: string;
+  title: string;
 }

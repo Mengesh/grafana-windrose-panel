@@ -19,8 +19,8 @@
     },
     {
       "type": "panel",
-      "id": "operato-windrose-panel",
-      "name": "Operato Windrose",
+      "id": "grafana-windrose-panel",
+      "name": "Windrose",
       "version": "1.0.0"
     },
     {
@@ -113,8 +113,8 @@
           }
         }
       ],
-      "title": "Operato Windrose",
-      "type": "operato-windrose-panel"
+      "title": "Windrose",
+      "type": "grafana-windrose-panel"
     }
   ],
   "refresh": "",
@@ -131,7 +131,7 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Operato Windrose Panel",
+  "title": "Windrose Panel",
   "uid": "DrF6ip_4z",
   "version": 1,
   "weekStart": ""

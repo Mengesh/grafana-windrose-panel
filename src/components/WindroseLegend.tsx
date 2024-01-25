@@ -4,7 +4,7 @@ import { roundWindBracketLabel } from 'utils/labelUtils';
 import { onMouseEnterDiv, onMouseLeaveDiv } from 'utils/stylesUtils';
 
 
-export const WindroseLegend = ({ bucketsSize, bucketStyles, changeStyle, windSpeedUnit, anchor, position }: WindroseLegendProps) => {
+export const WindroseLegend = ({ bucketsSize, bucketStyles, changeStyle, windSpeedUnit, anchor, position, title }: WindroseLegendProps) => {
 
     let legendItems: Array<React.ReactElement<any>> = []
 
@@ -76,7 +76,7 @@ export const WindroseLegend = ({ bucketsSize, bucketStyles, changeStyle, windSpe
         }}>
             <div style={{
                 justifyContent: 'center'
-            }}><b>Wind speed ({windSpeedUnit})</b></div>
+            }}><b>{title} ({windSpeedUnit})</b></div>
             {legendItems}
         </div>
 

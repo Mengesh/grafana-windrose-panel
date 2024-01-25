@@ -1,4 +1,4 @@
-
+Forked from https://git.operato.eu/open-source/operato-windrose-panel
 
 # Operato Windrose Grafana Panel <img src="./src/img/operato-windrose-logo.svg" width=32>
 

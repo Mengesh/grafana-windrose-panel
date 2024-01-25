@@ -83,7 +83,7 @@ function determinePercentLabelAngle(angleDiff: number, petalBuckets: PetalBucket
   return angleDiff * (minIndex-1) + angleDiff / 2 - 90 * deg2rad;
 }
 
-export const Windrose = ({ data, width, height, center, radius, bucketsCount, styles, changeStyle, tooltipDecimalPlaces, directionLabels, directionLinesCount, windSpeedUnit, legendPosition }: WindroseProps) => {
+export const Windrose = ({ data, width, height, center, radius, bucketsCount, styles, changeStyle, tooltipDecimalPlaces, directionLabels, directionLinesCount, windSpeedUnit, legendPosition, legendTitle }: WindroseProps) => {
 
   let petalNumber = bucketsCount;
 

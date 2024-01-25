@@ -6,6 +6,7 @@ import { createColorMap, highlightColor } from '../utils/colorUtils'
 import { calculateWindroseData, extractData, getUpperSpeedLimit } from 'utils/dataUtils';
 import { WindroseLegend } from './WindroseLegend';
 import { getWindSpeedUnitLabel } from 'utils/labelUtils';
+import { useTheme } from '@grafana/ui';
 
 interface WindrosePanelProps extends PanelProps<WindroseOptions> { }
 
@@ -70,6 +71,8 @@ export const WindrosePanel: React.FC<WindrosePanelProps> = ({ options, data, wid
   let constructingSpeedBucketStyles = createDefaultStyles(colorPaleteId, speedBucketsCount);
   const [bucketStyles, setBucketStyles] = useState(constructingSpeedBucketStyles);
 
+  const theme = useTheme()
+
   useEffect(() => {
     let constructingSpeedBucketStyles = createDefaultStyles(options.colorPalette, speedBucketsCount);
     setBucketStyles(constructingSpeedBucketStyles);    
@@ -97,7 +100,7 @@ export const WindrosePanel: React.FC<WindrosePanelProps> = ({ options, data, wid
   let directionLinesCount = Math.max(0, petalsPer90Deg)
 
   if (options.windroseLabels === "compass") {
-    const cardinalLabelStyle = { css: { font: "bold 20px sans-serif", fill: "white" }, radiusOffset: 16 }
+    const cardinalLabelStyle = { css: { font: "bold 20px sans-serif", fill: theme.isDark ? "white" : "black" }, radiusOffset: 16 }
     const ordinalLabelStyle = { css: { font: "normal 15px sans-serif", fill: "white" }, radiusOffset: 16 }
     const intermediateLabelStyle = { css: { font: "italic 10px sans-serif", fill: "white" }, radiusOffset: 16 }
 
@@ -137,7 +140,7 @@ export const WindrosePanel: React.FC<WindrosePanelProps> = ({ options, data, wid
   }
 
   let windSpeedUnit = getWindSpeedUnitLabel(options.windSpeedUnit);
-  let windroseLegend = <WindroseLegend bucketsSize={finalBucketsSize} bucketStyles={bucketStyles} changeStyle={setBucketStyles} windSpeedUnit={windSpeedUnit} anchor={options.legendAnchor} position={options.legendPosition} />
+  let windroseLegend = <WindroseLegend bucketsSize={finalBucketsSize} bucketStyles={bucketStyles} changeStyle={setBucketStyles} windSpeedUnit={windSpeedUnit} anchor={options.legendAnchor} position={options.legendPosition} title={options.legendTitle} />
 
   let tooltipDecimalPlaces = options.tooltipDecimalPlaces;
   if(tooltipDecimalPlaces == null) { tooltipDecimalPlaces = 1; }
@@ -148,7 +151,7 @@ export const WindrosePanel: React.FC<WindrosePanelProps> = ({ options, data, wid
         width={width} height={height} radius={windroseRadius} center={windroseCenter}
         data={windData} bucketsCount={petalsPer90Deg} directionLabels={directionLabels}
         styles={bucketStyles} changeStyle={setBucketStyles} tooltipDecimalPlaces={tooltipDecimalPlaces}
-        directionLinesCount={directionLinesCount} windSpeedUnit={windSpeedUnit} legendPosition={options.legendPosition} />
+        directionLinesCount={directionLinesCount} windSpeedUnit={windSpeedUnit} legendPosition={options.legendPosition} legendTitle={options.legendTitle}/>
       {options.showLegend && windroseLegend}
     </div>
 
