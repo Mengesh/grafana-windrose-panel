@@ -47,12 +47,12 @@ function createCircleScale(data: WindroseData, radius: number, center: Vector2, 
 
     percentLabels.push(
       <text x={x} y={y} style={
-        { 
-          pointerEvents: 'none' ,
-          font: labelFont
-        }
+      {
+        pointerEvents: 'none' ,
+        font: labelFont
       }
-        dominantBaseline="auto" textAnchor="start"
+      }
+            dominantBaseline="auto" textAnchor="start"
       >{Math.round(percent * 10) / 10 + "%"}</text>
     );
   }
@@ -83,7 +83,7 @@ function determinePercentLabelAngle(angleDiff: number, petalBuckets: PetalBucket
   return angleDiff * (minIndex-1) + angleDiff / 2 - 90 * deg2rad;
 }
 
-export const Windrose = ({ data, width, height, center, radius, bucketsCount, styles, changeStyle, tooltipDecimalPlaces, directionLabels, directionLinesCount, windSpeedUnit, legendPosition, legendTitle }: WindroseProps) => {
+export const Windrose = ({ data, width, height, center, radius, bucketsCount, styles, changeStyle, tooltipDecimalPlaces, directionLabels, directionLinesCount, windSpeedUnit, legendTitle }: WindroseProps) => {
 
   let petalNumber = bucketsCount;
 
@@ -146,20 +146,20 @@ export const Windrose = ({ data, width, height, center, radius, bucketsCount, st
       speedBucketLowerBound = speedBucket.speedUpperBound;
 
       petalBuckets.push(
-        <Tooltip content={tooltipContent}>
-          <polygon className={speedBucket.index.toString()}
-            onMouseEnter={(event) => { onMouseEnterPolygon(event, changeStyle, speedBucket.index) }} onMouseLeave={(event) => { onMouseLeavePolygon(event, changeStyle, speedBucket.index) }}
-            points={polypointString}
-            fill={bucketStyle.currentBucketStyle.color} fillOpacity={bucketStyle.currentBucketStyle.opacity}
-            stroke={bucketStyle.bucketsStrokeStyle.stroke} strokeWidth={bucketStyle.bucketsStrokeStyle.strokeWidth} />
-        </Tooltip>
+      <Tooltip content={tooltipContent}>
+        <polygon className={speedBucket.index.toString()}
+		 onMouseEnter={(event) => { onMouseEnterPolygon(event, changeStyle, speedBucket.index) }} onMouseLeave={(event) => { onMouseLeavePolygon(event, changeStyle, speedBucket.index) }}
+		 points={polypointString}
+		 fill={bucketStyle.currentBucketStyle.color} fillOpacity={bucketStyle.currentBucketStyle.opacity}
+		 stroke={bucketStyle.bucketsStrokeStyle.stroke} strokeWidth={bucketStyle.bucketsStrokeStyle.strokeWidth} />
+      </Tooltip>
       );
       petalBucketHighlights.push(
         <polygon className={speedBucket.index.toString()}
-            stroke={bucketStyle.currentStrokeStyle.stroke} strokeWidth={bucketStyle.currentStrokeStyle.strokeWidth}
-            style={{ pointerEvents: 'none' }}
-            points={polypointString}
-            fill="transparent"  />
+		 stroke={bucketStyle.currentStrokeStyle.stroke} strokeWidth={bucketStyle.currentStrokeStyle.strokeWidth}
+		 style={{ pointerEvents: 'none' }}
+		 points={polypointString}
+		 fill="transparent"  />
       );
     });
   }
@@ -181,39 +181,35 @@ export const Windrose = ({ data, width, height, center, radius, bucketsCount, st
   let [circlesRings, topCirclesRings, percentLabels] = createCircleScale(data, radius, center, percentLabelAngle);
 
   return (
-    <div>
-      <div>
-        <svg width={width} height={height}>
-          <Svg>
-            <circle cx={center.x} cy={center.y} r={radius} fill="#f0f0f0" />
+    <svg width="100%" height="100%">
+      <Svg>
+        <circle cx={center.x} cy={center.y} r={radius} fill="#f0f0f0" />
 
-            <circle cx={center.x} cy={center.y} r={radius * .1} fill="#dddddd" />
-            <circle cx={center.x} cy={center.y} r={radius} fill="transparent" stroke='#222222' strokeWidth='1' />
-            <circle cx={center.x} cy={center.y} r={radius * .1} fill="transparent" stroke='#222222' strokeWidth='1' />
-            <Svg>
-              {circlesRings}
-            </Svg>
-            <Svg>
-              {linePetals}
-            </Svg>
-            <Svg>
-              {petalBuckets}
-            </Svg>
-            <Svg>
-              {petalBucketHighlights}
-            </Svg>
-            <Svg>
-              {percentLabels}
-            </Svg>
-            <Svg>
-              {cardinalLabels}
-            </Svg>
-            <Svg>
-              {topCirclesRings}
-            </Svg>
-          </Svg>
-        </svg>
-      </div>
-    </div>
+        <circle cx={center.x} cy={center.y} r={radius * .1} fill="#dddddd" />
+        <circle cx={center.x} cy={center.y} r={radius} fill="transparent" stroke='#222222' strokeWidth='1' />
+        <circle cx={center.x} cy={center.y} r={radius * .1} fill="transparent" stroke='#222222' strokeWidth='1' />
+        <Svg>
+          {circlesRings}
+        </Svg>
+        <Svg>
+          {linePetals}
+        </Svg>
+        <Svg>
+          {petalBuckets}
+        </Svg>
+        <Svg>
+          {petalBucketHighlights}
+        </Svg>
+        <Svg>
+          {percentLabels}
+        </Svg>
+        <Svg>
+          {cardinalLabels}
+        </Svg>
+        <Svg>
+          {topCirclesRings}
+        </Svg>
+      </Svg>
+    </svg>
   );
 };

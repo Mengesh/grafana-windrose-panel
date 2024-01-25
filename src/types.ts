@@ -107,7 +107,6 @@ export type WindroseProps = {
   tooltipDecimalPlaces: number;
   directionLabels: DirectionLabel[];
   windSpeedUnit: string;
-  legendPosition: string;
   legendTitle: string;
 };
 

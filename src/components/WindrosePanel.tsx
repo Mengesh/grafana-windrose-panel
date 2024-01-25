@@ -75,7 +75,7 @@ export const WindrosePanel: React.FC<WindrosePanelProps> = ({ options, data, wid
 
   useEffect(() => {
     let constructingSpeedBucketStyles = createDefaultStyles(options.colorPalette, speedBucketsCount);
-    setBucketStyles(constructingSpeedBucketStyles);    
+    setBucketStyles(constructingSpeedBucketStyles);
   }, [options.colorPalette, speedBucketsCount]);
 
   const extractedData = extractData(data);
@@ -91,18 +91,17 @@ export const WindrosePanel: React.FC<WindrosePanelProps> = ({ options, data, wid
 
   let padding = 32;
 
-  let legendOffset = !options.doesLegendOverlay && options.showLegend ? 150 : 0;
-  const windroseRadius = Math.min(height, width - legendOffset) / 2 - padding;
-  const windrosePositionX = windroseRadius + padding + (options.legendPosition === 'left' ? legendOffset : 0);
-  const windroseCenter = { x: windrosePositionX, y: height / 2 }
+  let legendOffset = 150;
+  const windroseRadius = Math.min(height, width - 2 * legendOffset) / 2 - padding;
+  const windroseCenter = { x: width / 2, y: height / 2 }
 
   let directionLabels: DirectionLabel[] = [];
   let directionLinesCount = Math.max(0, petalsPer90Deg)
 
   if (options.windroseLabels === "compass") {
     const cardinalLabelStyle = { css: { font: "bold 20px sans-serif", fill: theme.isDark ? "white" : "black" }, radiusOffset: 16 }
-    const ordinalLabelStyle = { css: { font: "normal 15px sans-serif", fill: "white" }, radiusOffset: 16 }
-    const intermediateLabelStyle = { css: { font: "italic 10px sans-serif", fill: "white" }, radiusOffset: 16 }
+    const ordinalLabelStyle = { css: { font: "normal 15px sans-serif", fill: theme.isDark ? "white" : "black" }, radiusOffset: 16 }
+    const intermediateLabelStyle = { css: { font: "italic 10px sans-serif", fill: theme.isDark ? "white" : "black" }, radiusOffset: 16 }
 
     directionLabels.push({ angle: 0, text: "N", style: cardinalLabelStyle });
     directionLabels.push({ angle: 90, text: "E", style: cardinalLabelStyle });
@@ -130,7 +129,7 @@ export const WindrosePanel: React.FC<WindrosePanelProps> = ({ options, data, wid
       directionLinesCount = 4
     }
   } else if (options.windroseLabels === "degree") {
-    const degreeLableStyle = { css: { font: "normal 12px sans-serif", fill: "white" }, radiusOffset: 16 }
+    const degreeLableStyle = { css: { font: "normal 12px sans-serif", fill: theme.isDark? "white" : "black" }, radiusOffset: 16 }
     let totalPetals = petalsPer90Deg * 4;
     let angleDiff = 360 / totalPetals;
     for (let i = 0; i < totalPetals; i++) {
@@ -146,13 +145,25 @@ export const WindrosePanel: React.FC<WindrosePanelProps> = ({ options, data, wid
   if(tooltipDecimalPlaces == null) { tooltipDecimalPlaces = 1; }
 
   return (
-    <div>
-      <Windrose
-        width={width} height={height} radius={windroseRadius} center={windroseCenter}
-        data={windData} bucketsCount={petalsPer90Deg} directionLabels={directionLabels}
-        styles={bucketStyles} changeStyle={setBucketStyles} tooltipDecimalPlaces={tooltipDecimalPlaces}
-        directionLinesCount={directionLinesCount} windSpeedUnit={windSpeedUnit} legendPosition={options.legendPosition} legendTitle={options.legendTitle}/>
-      {options.showLegend && windroseLegend}
+    <div style={{ height: height, width: width, display: "block" }}>
+    <Windrose
+    width={width} height={height} radius={windroseRadius} center={windroseCenter}
+    data={windData} bucketsCount={petalsPer90Deg} directionLabels={directionLabels}
+    styles={bucketStyles} changeStyle={setBucketStyles} tooltipDecimalPlaces={tooltipDecimalPlaces}
+    directionLinesCount={directionLinesCount} windSpeedUnit={windSpeedUnit} legendTitle={options.legendTitle}/>
+    {
+      options.legendPosition === "left" ?
+      <div style={{ position: "absolute",
+		    top: "50%",
+		    left: `calc(50% - ${windroseRadius}px)`,
+		    transform: `translate(calc(-50% - 80%), -50%)`}}>{options.showLegend && windroseLegend}</div>
+      :
+      <div style={{ position: "absolute",
+		    top: "50%",
+		    left: `calc(50% + ${windroseRadius}px)`,
+		    transform: `translate(calc(-50% + 80%), -50%)`}}>{options.showLegend && windroseLegend}</div>
+    }
+
     </div>
 
   );

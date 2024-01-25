@@ -31,38 +31,8 @@ export const WindroseLegend = ({ bucketsSize, bucketStyles, changeStyle, windSpe
     }
 
 
-    let positionStyle = {};
-    if(position === "right"){
-        positionStyle = {
-            right: "8px"
-        }
-    }else {
-        positionStyle = {
-            left: "8px"
-        }
-    }
-
-    let anchorStyle = {};
-    if(anchor === "top"){
-        positionStyle = {
-            top: "8px",
-        }
-    }else if(anchor === "center"){
-        anchorStyle = {
-            top: "50%",
-            transform: "translate(0%, -50%)",
-        }
-    }else {
-        anchorStyle = {
-            bottom: "8px",
-        }
-    }
-
     return (
         <div style={{
-            position: "absolute",
-            ...positionStyle,
-            ...anchorStyle,
             width: "150px",
             border: "4px solid #4b4c50",
             borderRadius: "16px",
