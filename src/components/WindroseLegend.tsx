@@ -32,8 +32,8 @@ export const WindroseLegend = ({ bucketsSize, bucketStyles, changeStyle, windSpe
 
 
     return (
-        <div style={{
-            width: "150px",
+      <div style={{
+	width: "100%",
             border: "4px solid #4b4c50",
             borderRadius: "16px",
             padding: "8px",
