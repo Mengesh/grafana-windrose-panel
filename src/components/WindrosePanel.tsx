@@ -92,7 +92,7 @@ export const WindrosePanel: React.FC<WindrosePanelProps> = ({ options, data, wid
   let padding = 32;
 
   const windroseRadius = Math.min(height, width / 2) / 2 - padding;
-  const windroseCenter = { x: width / 2 - windroseRadius - padding, y: height / 2 }
+  const windroseCenter = { x: width / 2 - windroseRadius / 2 - padding, y: height / 2 }
 
   let directionLabels: DirectionLabel[] = [];
   let directionLinesCount = Math.max(0, petalsPer90Deg)
@@ -154,14 +154,14 @@ export const WindrosePanel: React.FC<WindrosePanelProps> = ({ options, data, wid
       options.legendPosition === "left" ?
       <div style={{ position: "absolute",
 		    top: "50%",
-		    left: `calc(50% - ${windroseRadius}px)`,
-		    transform: `translate(calc(-50% - 80%), -50%)`}}>{options.showLegend && windroseLegend}</div>
+                    left: `calc(50% - ${windroseRadius / 2 }px)`,
+		    transform: `translate(-50%, -50%)`}}>{options.showLegend && windroseLegend}</div>
       :
       <div style={{ position: "absolute",
 		    width: `calc(${Math.min(200, width/2 - padding)}px)`,
-		    top: "50%",
-		    left: "50%",
-		    transform: `translate(-0%, -50%)`}}>{options.showLegend && windroseLegend}</div>
+	            top: "50%",
+                    left: `calc(50% + ${windroseRadius / 2}px)`,	
+                    transform: `translate(0%, -50%)`}}>{options.showLegend && windroseLegend}</div>
     }
 
     </div>
