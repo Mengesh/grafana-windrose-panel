@@ -13,8 +13,8 @@ export function extractData(data: PanelData) {
     for (let i = 0; i < weatherData.fields[0].values.length; i++) {
         for (let j = 0; j < weatherData.fields.length; j++) {
             let field = weatherData.fields[j];
-            if (field.name === 'wind_speed') { speed.push(field.values.get(i)); }
-            if (field.name === 'wind_direction') { direction.push(field.values.get(i)); }
+            if (field.config.displayName === 'wind_speed') { speed.push(field.values.get(i)); }
+            if (field.config.displayName === 'wind_direction') { direction.push(field.values.get(i)); }
         }
     }
 
